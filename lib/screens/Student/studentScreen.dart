@@ -3,9 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:ti/DI/ServiceLocator.dart';
 import 'package:ti/constants/color_manager.dart';
 import 'package:ti/data/Models/Course.dart';
-import 'package:ti/data/Models/CourseName.dart';
 import 'package:ti/data/Models/Student.dart';
-import 'package:ti/data/staticData.dart';
 import 'package:ti/screens/Student/bloc/studentBloc.dart';
 import 'package:ti/screens/Student/bloc/studentEvent.dart';
 import 'package:ti/screens/Student/bloc/studentState.dart';
@@ -20,12 +18,12 @@ class StudentScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Container(
-          width: 100,
+        title: const SizedBox(
+          width: 200,
           height: 50,
-          child: const Image(
-            image: AssetImage('images/Startlogo.png'),
-            fit: BoxFit.contain,
+          child: Image(
+            image: AssetImage('images/2.png'),
+            fit: BoxFit.cover,
           ),
         ),
         backgroundColor: ColorManager.purple,
@@ -40,8 +38,8 @@ class StudentScreen extends StatelessWidget {
               Container(
                 width: MediaQuery.of(context).size.width,
                 height: MediaQuery.of(context).size.height,
-                color: Colors.red,
-                child: Info(),
+                color: ColorManager.purple,
+                child: info(),
               ),
               Container(
                 width: MediaQuery.of(context).size.width,
@@ -54,11 +52,11 @@ class StudentScreen extends StatelessWidget {
                 ),
                 child: Column(
                   children: [
-                    SizedBox(
+                    const SizedBox(
                       height: 30,
                     ),
-                    CourseTabs(context),
-                    SizedBox(
+                    CourseTabs(context, state),
+                    const SizedBox(
                       height: 40,
                     ),
                     Container(
@@ -66,7 +64,7 @@ class StudentScreen extends StatelessWidget {
                       height: MediaQuery.of(context).size.height * 0.5,
                       color: Colors.red,
                       child: ListView.builder(
-                        padding: EdgeInsets.symmetric(horizontal: 10),
+                        padding: const EdgeInsets.symmetric(horizontal: 10),
                         itemCount: state.courseList?.length ?? 0,
                         itemBuilder: (context, index) {
                           return CourseCard(course: state.courseList![index]);
@@ -83,7 +81,7 @@ class StudentScreen extends StatelessWidget {
     );
   }
 
-  Row CourseTabs(BuildContext context) {
+  Row CourseTabs(BuildContext context, StudentState state) {
     return Row(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
@@ -95,12 +93,14 @@ class StudentScreen extends StatelessWidget {
             width: 150,
             height: 40,
             decoration: BoxDecoration(
-              color: Colors.red,
+              color: (state is FetchStudentCourses)
+                  ? ColorManager.purple
+                  : Colors.white,
               borderRadius: BorderRadius.circular(20),
             ),
           ),
         ),
-        SizedBox(
+        const SizedBox(
           width: 30,
         ),
         GestureDetector(
@@ -113,7 +113,9 @@ class StudentScreen extends StatelessWidget {
             width: 150,
             height: 40,
             decoration: BoxDecoration(
-              color: Colors.green,
+              color: (state is FetchAllCourses)
+                  ? Colors.white
+                  : ColorManager.purple,
               borderRadius: BorderRadius.circular(20),
             ),
           ),
@@ -122,7 +124,7 @@ class StudentScreen extends StatelessWidget {
     );
   }
 
-  Column Info() {
+  Column info() {
     return Column(
       children: [
         const SizedBox(
@@ -133,7 +135,7 @@ class StudentScreen extends StatelessWidget {
           height: 140,
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(20),
-            color: Colors.green,
+            color: Colors.white,
           ),
           child: ClipRRect(
             borderRadius: BorderRadius.circular(20),
@@ -141,61 +143,78 @@ class StudentScreen extends StatelessWidget {
               children: [
                 Expanded(
                   flex: 8,
-                  child: Container(
-                    color: Colors.yellow,
-                    child: Padding(
-                      padding: const EdgeInsets.only(right: 10),
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.end,
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.end,
-                            children: [
-                              Text(student.fullName),
-                              const Icon(Icons.abc)
-                            ],
-                          ),
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.end,
-                            children: [
-                              Text(student.phoneNumber),
-                              const Icon(Icons.abc)
-                            ],
-                          ),
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.end,
-                            children: [
-                              Text(student.id.toString()),
-                              const Icon(Icons.abc)
-                            ],
-                          ),
-                          SizedBox(
-                            height: 10,
-                          ),
-                          Container(
-                            width: 70,
-                            height: 20,
-                            color: Colors.red,
-                            child: Center(
-                              child: Text('ویرایش'),
+                  child: Padding(
+                    padding: const EdgeInsets.only(right: 10),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.end,
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.end,
+                          children: [
+                            Text(
+                              student.fullName,
+                              style: const TextStyle(fontFamily: 'Vazir'),
                             ),
-                          )
-                        ],
-                      ),
+                            Icon(
+                              Icons.account_circle_rounded,
+                              color: ColorManager.purple,
+                            )
+                          ],
+                        ),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.end,
+                          children: [
+                            Text(
+                              student.phoneNumber,
+                              style: const TextStyle(fontFamily: 'Mvazir'),
+                            ),
+                            Icon(
+                              Icons.phone_enabled,
+                              color: ColorManager.purple,
+                            )
+                          ],
+                        ),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.end,
+                          children: [
+                            Text(
+                              student.id.toString(),
+                              style: const TextStyle(fontFamily: 'Mvazir'),
+                            ),
+                            Icon(Icons.insert_emoticon_outlined,
+                                color: ColorManager.purple)
+                          ],
+                        ),
+                        const SizedBox(
+                          height: 10,
+                        ),
+                        Container(
+                          width: 70,
+                          height: 30,
+                          decoration: BoxDecoration(
+                              color: ColorManager.purple,
+                              borderRadius: BorderRadius.circular(5)),
+                          child: const Center(
+                            child: Text(
+                              'ویرایش',
+                              style: TextStyle(
+                                  fontFamily: 'Vazir', color: Colors.white),
+                            ),
+                          ),
+                        )
+                      ],
                     ),
                   ),
                 ),
                 Expanded(
                   flex: 4,
                   child: Container(
-                    color: Colors.black,
-                    child: Container(
-                      width: 80,
-                      height: 80,
-                      decoration: BoxDecoration(
-                          color: Colors.white, shape: BoxShape.circle),
-                    ),
+                    width: 80,
+                    height: 80,
+                    decoration: const BoxDecoration(
+                        color: Colors.white, shape: BoxShape.circle),
+                    child: const Image(image: AssetImage('images/noImage.png')),
                   ),
                 ),
               ],
