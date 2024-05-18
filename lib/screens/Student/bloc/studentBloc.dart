@@ -19,7 +19,7 @@ class StudentBloc extends Bloc<StudentEvent, StudentState> {
     on<FetchAllCourses>((event, emit) {
       emit(StudentLoadingState());
 
-      emit(StudentCourseResponse(data.getAllCourses()));
+      emit(StudentGetAllCourses(data.getAllCourses()));
     });
 
     on<FetchCourseDetails>((event, emit) {

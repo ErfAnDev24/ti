@@ -15,3 +15,13 @@ class FetchCourseDetails extends StudentEvent {
   String? courseName;
   FetchCourseDetails({required this.teacherId, required this.courseName});
 }
+
+class SelectDayEvent extends StudentEvent {
+  String holdDay;
+  SelectDayEvent({required this.holdDay});
+}
+
+class SelectTimeEvent extends StudentEvent {
+  String holdTime;
+  SelectTimeEvent({required this.holdTime});
+}

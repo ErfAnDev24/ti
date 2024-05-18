@@ -16,17 +16,18 @@ class CourseDetails extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Container(
-          width: 100,
+        title: const SizedBox(
+          width: 200,
           height: 50,
-          child: const Image(
-            image: AssetImage('images/Startlogo.png'),
-            fit: BoxFit.contain,
+          child: Image(
+            image: AssetImage('images/2.png'),
+            fit: BoxFit.cover,
           ),
         ),
         backgroundColor: ColorManager.purple,
         toolbarHeight: 50,
         centerTitle: true,
+        foregroundColor: Colors.white,
       ),
       body: BlocBuilder<StudentBloc, StudentState>(
         builder: (context, state) {
@@ -35,7 +36,13 @@ class CourseDetails extends StatelessWidget {
               children: [
                 Padding(
                   padding: const EdgeInsets.only(top: 10),
-                  child: Text(course?.title ?? ''),
+                  child: Text(
+                    course?.title ?? '',
+                    style: const TextStyle(
+                        fontFamily: 'Vazir',
+                        fontSize: 20,
+                        fontWeight: FontWeight.bold),
+                  ),
                 ),
                 const Row(
                   mainAxisAlignment: MainAxisAlignment.end,
@@ -43,37 +50,67 @@ class CourseDetails extends StatelessWidget {
                     Padding(
                       padding:
                           EdgeInsets.symmetric(horizontal: 40, vertical: 20),
-                      child: Text('نام استاد'),
+                      child: Text(
+                        ': نام استاد',
+                        style: TextStyle(
+                            fontFamily: 'Vazir',
+                            fontSize: 14,
+                            fontWeight: FontWeight.bold),
+                      ),
                     )
                   ],
                 ),
                 Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 20),
-                    child: Text(state.teahcer?.fullName ?? '')),
+                  padding: const EdgeInsets.symmetric(horizontal: 20),
+                  child: Text(
+                    state.teahcer?.fullName ?? '',
+                    style: const TextStyle(
+                        fontFamily: 'Vazir',
+                        fontSize: 18,
+                        fontWeight: FontWeight.bold),
+                  ),
+                ),
                 const Padding(
                   padding: EdgeInsets.symmetric(horizontal: 40, vertical: 30),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.end,
-                    children: [Text('روز کلاس ها')],
+                    children: [
+                      Text(
+                        ': روز کلاس ها',
+                        style: TextStyle(
+                            fontFamily: 'Vazir',
+                            fontSize: 14,
+                            fontWeight: FontWeight.bold),
+                      )
+                    ],
                   ),
                 ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceAround,
-                  children: List.generate(
-                    state.courseHoldPlaces?.length ?? 0,
-                    (index) {
-                      return Container(
-                        width: 100,
-                        height: 50,
-                        decoration: BoxDecoration(
-                          color: Colors.amber,
-                          borderRadius: BorderRadius.circular(5),
-                        ),
-                      );
-                    },
-                  ),
+                BlocBuilder<StudentBloc, StudentState>(
+                  builder: (context, state) {
+                    return Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceAround,
+                      children: List.generate(
+                        state.courseHoldPlaces?.length ?? 0,
+                        (index) {
+                          return GestureDetector(
+                            onTap: () {
+                              print('Hello world');
+                            },
+                            child: Container(
+                              width: 150,
+                              height: 50,
+                              decoration: BoxDecoration(
+                                color: ColorManager.purple,
+                                borderRadius: BorderRadius.circular(5),
+                              ),
+                            ),
+                          );
+                        },
+                      ),
+                    );
+                  },
                 ),
-                Padding(
+                const Padding(
                   padding: EdgeInsets.symmetric(horizontal: 40, vertical: 30),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.end,

@@ -27,6 +27,10 @@ class StudentCourseResponse extends StudentState {
   StudentCourseResponse(courseList) : super(courseList: courseList);
 }
 
+class StudentGetAllCourses extends StudentState {
+  StudentGetAllCourses(courseList) : super(courseList: courseList);
+}
+
 class AllCourseResponse extends StudentState {
   AllCourseResponse({required super.courseList});
 }

@@ -5,6 +5,7 @@ import 'package:ti/constants/color_manager.dart';
 import 'package:ti/data/Models/Student.dart';
 import 'package:ti/screens/Manager/manager_screen.dart';
 import 'package:ti/screens/Student/bloc/studentBloc.dart';
+import 'package:ti/screens/Student/bloc/studentEvent.dart';
 import 'package:ti/screens/Student/studentScreen.dart';
 import 'package:ti/screens/Teacher/bloc/teacher_bloc.dart';
 import 'package:ti/screens/Teacher/teacher_screen.dart';
@@ -38,7 +39,11 @@ class HomeScreen extends StatelessWidget {
                       builder: (context) => BlocProvider(
                         create: (context) => StudentBloc(),
                         child: BlocProvider(
-                          create: (context) => locator.get<StudentBloc>(),
+                          create: (context) {
+                            final bloc = locator.get<StudentBloc>();
+                            bloc.add(FetchAllCourses());
+                            return bloc;
+                          },
                           child: StudentScreen(
                             student: Student(
                                 fullName: 'عرفان پزشک پور',
