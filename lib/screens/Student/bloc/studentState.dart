@@ -4,15 +4,20 @@ import 'package:ti/data/Models/Teacher.dart';
 
 class StudentState {
   List<Course>? courseList;
-  List<String>? courseHoldPlaces;
+  List<String>? courseHoldDays;
   List<String>? courseHoldDates;
   Teacher? teahcer;
+  String? holdTime;
+  String? holdDay;
 
-  StudentState(
-      {this.courseList,
-      this.teahcer,
-      this.courseHoldDates,
-      this.courseHoldPlaces});
+  StudentState({
+    this.courseList,
+    this.teahcer,
+    this.courseHoldDates,
+    this.courseHoldDays,
+    this.holdTime,
+    this.holdDay,
+  });
 }
 
 class StudentInitialState extends StudentState {
@@ -36,9 +41,31 @@ class AllCourseResponse extends StudentState {
 }
 
 class FetchCourseDetailsResponse extends StudentState {
-  FetchCourseDetailsResponse(teacher, courseHoldPlaces, courseHoldDates)
+  FetchCourseDetailsResponse(teacher, courseHoldDays, courseHoldDates)
       : super(
             teahcer: teacher,
-            courseHoldPlaces: courseHoldPlaces,
-            courseHoldDates: courseHoldDates);
+            courseHoldDays: courseHoldDays,
+            courseHoldDates: courseHoldDates,
+            holdDay: courseHoldDays[0],
+            holdTime: courseHoldDates[0]);
+}
+
+class SelectDayState extends StudentState {
+  SelectDayState(teacher, holdDay, holdTime, courseHoldDays, courseHoldDates)
+      : super(
+            teahcer: teacher,
+            courseHoldDays: courseHoldDays,
+            courseHoldDates: courseHoldDates,
+            holdDay: holdDay,
+            holdTime: holdTime);
+}
+
+class SelectTimeState extends StudentState {
+  SelectTimeState(teacher, holdDay, holdTime, courseHoldDays, courseHoldDates)
+      : super(
+            teahcer: teacher,
+            courseHoldDays: courseHoldDays,
+            courseHoldDates: courseHoldDates,
+            holdDay: holdDay,
+            holdTime: holdTime);
 }

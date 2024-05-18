@@ -40,5 +40,26 @@ class StudentBloc extends Bloc<StudentEvent, StudentState> {
 
       emit(FetchCourseDetailsResponse(teacher, days, dates));
     });
+
+    on<SelectDayEvent>(
+      (event, emit) async {
+        emit(
+          SelectDayState(state.teahcer, state.courseHoldDays,
+              state.courseHoldDates, event.holdDay, state.holdTime),
+        );
+      },
+    );
+
+    on<SelectTimeEvent>(
+      (event, emit) async {
+        print('ErfAn check time ${state.runtimeType}');
+        print('ErfAn check time ${event.holdTime}');
+
+        emit(
+          SelectTimeState(state.teahcer, state.courseHoldDays,
+              state.courseHoldDates, state.holdDay, event.holdTime),
+        );
+      },
+    );
   }
 }
