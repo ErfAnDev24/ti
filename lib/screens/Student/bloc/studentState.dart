@@ -51,7 +51,7 @@ class FetchCourseDetailsResponse extends StudentState {
 }
 
 class SelectDayState extends StudentState {
-  SelectDayState(teacher, holdDay, holdTime, courseHoldDays, courseHoldDates)
+  SelectDayState(teacher, courseHoldDays, courseHoldDates, holdDay, holdTime)
       : super(
             teahcer: teacher,
             courseHoldDays: courseHoldDays,
@@ -61,7 +61,7 @@ class SelectDayState extends StudentState {
 }
 
 class SelectTimeState extends StudentState {
-  SelectTimeState(teacher, holdDay, holdTime, courseHoldDays, courseHoldDates)
+  SelectTimeState(teacher, courseHoldDays, courseHoldDates, holdDay, holdTime)
       : super(
             teahcer: teacher,
             courseHoldDays: courseHoldDays,

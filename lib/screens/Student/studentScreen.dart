@@ -83,7 +83,6 @@ class StudentScreen extends StatelessWidget {
   }
 
   Row CourseTabs(BuildContext context, StudentState state) {
-    print('ErfAn check ${state.runtimeType}');
     return Row(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
@@ -347,11 +346,10 @@ class CourseCard extends StatelessWidget {
                             onTap: () {
                               Navigator.of(context).push(
                                 MaterialPageRoute(
-                                  builder: (context) => BlocProvider.value(
-                                    value: locator.get<StudentBloc>(),
-                                    child: CourseDetails(
-                                      course: course,
-                                    ),
+                                  builder: (context) => BlocProvider(
+                                    create: (context) =>
+                                        locator.get<StudentBloc>(),
+                                    child: CourseDetails(course: course),
                                   ),
                                 ),
                               );

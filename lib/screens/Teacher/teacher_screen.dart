@@ -16,17 +16,18 @@ class TeacherScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Container(
-          width: 100,
+        title: const SizedBox(
+          width: 200,
           height: 50,
-          child: const Image(
-            image: AssetImage('images/Startlogo.png'),
-            fit: BoxFit.contain,
+          child: Image(
+            image: AssetImage('images/2.png'),
+            fit: BoxFit.cover,
           ),
         ),
         backgroundColor: ColorManager.purple,
         toolbarHeight: 50,
         centerTitle: true,
+        foregroundColor: Colors.white,
       ),
       body: Stack(
         alignment: Alignment.bottomCenter,
@@ -34,8 +35,8 @@ class TeacherScreen extends StatelessWidget {
           Container(
             width: MediaQuery.of(context).size.width,
             height: MediaQuery.of(context).size.height,
-            color: Colors.red,
-            child: Info(),
+            color: ColorManager.purple,
+            child: info(),
           ),
           Container(
             width: MediaQuery.of(context).size.width,
@@ -47,11 +48,11 @@ class TeacherScreen extends StatelessWidget {
             ),
             child: Column(
               children: [
-                SizedBox(
+                const SizedBox(
                   height: 30,
                 ),
                 CourseTabs(context),
-                SizedBox(
+                const SizedBox(
                   height: 40,
                 ),
                 BlocBuilder<TeacherBloc, TeacherState>(
@@ -59,7 +60,7 @@ class TeacherScreen extends StatelessWidget {
                     return Container(
                       width: MediaQuery.of(context).size.width * 0.9,
                       height: MediaQuery.of(context).size.height * 0.5,
-                      color: Colors.red,
+                      color: Colors.white,
                       child: state.selectedSection == 1
                           ? teacherCourses(context)
                           : state.selectedSection == 2
@@ -78,7 +79,7 @@ class TeacherScreen extends StatelessWidget {
 
   ListView registeringGrades(BuildContext context) {
     return ListView(
-      padding: EdgeInsets.symmetric(horizontal: 10),
+      padding: const EdgeInsets.symmetric(horizontal: 10),
       children: [
         CourseCard(
           course: Course(
@@ -93,10 +94,11 @@ class TeacherScreen extends StatelessWidget {
           onTabMethod: () {
             Navigator.of(context).push(
               MaterialPageRoute(
-                builder: (context) => RegisterGradeScreen(),
+                builder: (context) => const RegisterGradeScreen(),
               ),
             );
           },
+          selectionState: 3,
         ),
         CourseCard(
           course: Course(
@@ -111,10 +113,11 @@ class TeacherScreen extends StatelessWidget {
           onTabMethod: () {
             Navigator.of(context).push(
               MaterialPageRoute(
-                builder: (context) => RegisterGradeScreen(),
+                builder: (context) => const RegisterGradeScreen(),
               ),
             );
           },
+          selectionState: 3,
         ),
         CourseCard(
           course: Course(
@@ -133,6 +136,7 @@ class TeacherScreen extends StatelessWidget {
               ),
             );
           },
+          selectionState: 3,
         ),
         CourseCard(
           course: Course(
@@ -151,6 +155,7 @@ class TeacherScreen extends StatelessWidget {
               ),
             );
           },
+          selectionState: 3,
         ),
         CourseCard(
           course: Course(
@@ -165,10 +170,11 @@ class TeacherScreen extends StatelessWidget {
           onTabMethod: () {
             Navigator.of(context).push(
               MaterialPageRoute(
-                builder: (context) => RegisterGradeScreen(),
+                builder: (context) => const RegisterGradeScreen(),
               ),
             );
           },
+          selectionState: 3,
         ),
       ],
     );
@@ -195,6 +201,7 @@ class TeacherScreen extends StatelessWidget {
               ),
             );
           },
+          selectionState: 2,
         ),
         CourseCard(
           course: Course(
@@ -213,6 +220,7 @@ class TeacherScreen extends StatelessWidget {
               ),
             );
           },
+          selectionState: 2,
         ),
         CourseCard(
           course: Course(
@@ -231,6 +239,7 @@ class TeacherScreen extends StatelessWidget {
               ),
             );
           },
+          selectionState: 2,
         ),
         CourseCard(
           course: Course(
@@ -249,6 +258,7 @@ class TeacherScreen extends StatelessWidget {
               ),
             );
           },
+          selectionState: 2,
         ),
         CourseCard(
           course: Course(
@@ -267,6 +277,7 @@ class TeacherScreen extends StatelessWidget {
               ),
             );
           },
+          selectionState: 2,
         ),
       ],
     );
@@ -293,6 +304,26 @@ class TeacherScreen extends StatelessWidget {
               ),
             );
           },
+          selectionState: 1,
+        ),
+        CourseCard(
+          course: Course(
+              id: 1,
+              classId: 1,
+              title: 'Flutter',
+              holdTime: '12:00',
+              holdDay: 'چهار شنبه',
+              holdPlace: 'A2',
+              teacherId: 1,
+              coursePrice: '8000000'),
+          onTabMethod: () {
+            Navigator.of(context).push(
+              MaterialPageRoute(
+                builder: (context) => TeacherCourseDetailsScreen(),
+              ),
+            );
+          },
+          selectionState: 1,
         ),
         CourseCard(
           course: Course(
@@ -311,39 +342,23 @@ class TeacherScreen extends StatelessWidget {
               ),
             );
           },
+          selectionState: 1,
         ),
         CourseCard(
           course: Course(
               id: 1,
               classId: 1,
-              title: 'Java',
-              holdTime: '8:00',
+              title: 'C++',
+              holdTime: '12:00',
               holdDay: 'چهار شنبه',
-              holdPlace: 'A1',
+              holdPlace: 'A3',
               teacherId: 1,
               coursePrice: '8000000'),
+          selectionState: 1,
           onTabMethod: () {
             Navigator.of(context).push(
               MaterialPageRoute(
-                builder: (context) => TeacherCourseDetailsScreen(),
-              ),
-            );
-          },
-        ),
-        CourseCard(
-          course: Course(
-              id: 1,
-              classId: 1,
-              title: 'Java',
-              holdTime: '8:00',
-              holdDay: 'چهار شنبه',
-              holdPlace: 'A1',
-              teacherId: 1,
-              coursePrice: '8000000'),
-          onTabMethod: () {
-            Navigator.of(context).push(
-              MaterialPageRoute(
-                builder: (context) => TeacherCourseDetailsScreen(),
+                builder: (context) => const TeacherCourseDetailsScreen(),
               ),
             );
           },
@@ -352,60 +367,121 @@ class TeacherScreen extends StatelessWidget {
     );
   }
 
-  Row CourseTabs(BuildContext context) {
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.center,
-      children: [
-        GestureDetector(
-          onTap: () {
-            context.read<TeacherBloc>().add(TeacherSelectionEvent(1));
-          },
-          child: Container(
-            width: 100,
-            height: 40,
-            decoration: BoxDecoration(
-              color: Colors.red,
-              borderRadius: BorderRadius.circular(20),
+  Widget CourseTabs(BuildContext context) {
+    return BlocBuilder<TeacherBloc, TeacherState>(
+      builder: (context, state) {
+        return Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            GestureDetector(
+              onTap: () {
+                context.read<TeacherBloc>().add(TeacherSelectionEvent(1));
+              },
+              child: Container(
+                width: 100,
+                height: 40,
+                decoration: BoxDecoration(
+                  color: state.selectedSection == 1
+                      ? ColorManager.purple
+                      : Colors.white,
+                  border: Border.all(
+                    width: 2,
+                    color: state.selectedSection == 1
+                        ? Colors.white
+                        : ColorManager.purple,
+                  ),
+                  borderRadius: BorderRadius.circular(20),
+                ),
+                child: Center(
+                  child: Text(
+                    'دوره های من',
+                    style: TextStyle(
+                      fontFamily: 'Vazir',
+                      color: state.selectedSection == 1
+                          ? Colors.white
+                          : ColorManager.purple,
+                    ),
+                  ),
+                ),
+              ),
             ),
-          ),
-        ),
-        SizedBox(
-          width: 30,
-        ),
-        GestureDetector(
-          onTap: () {
-            context.read<TeacherBloc>().add(TeacherSelectionEvent(2));
-          },
-          child: Container(
-            width: 100,
-            height: 40,
-            decoration: BoxDecoration(
-              color: Colors.green,
-              borderRadius: BorderRadius.circular(20),
+            const SizedBox(
+              width: 30,
             ),
-          ),
-        ),
-        SizedBox(
-          width: 30,
-        ),
-        GestureDetector(
-          onTap: () {
-            context.read<TeacherBloc>().add(TeacherSelectionEvent(3));
-          },
-          child: Container(
-            width: 100,
-            height: 40,
-            decoration: BoxDecoration(
-              color: Colors.purple,
-              borderRadius: BorderRadius.circular(20),
+            GestureDetector(
+              onTap: () {
+                context.read<TeacherBloc>().add(TeacherSelectionEvent(2));
+              },
+              child: Container(
+                width: 100,
+                height: 40,
+                decoration: BoxDecoration(
+                  color: state.selectedSection == 2
+                      ? ColorManager.purple
+                      : Colors.white,
+                  border: Border.all(
+                    width: 2,
+                    color: state.selectedSection == 2
+                        ? Colors.white
+                        : ColorManager.purple,
+                  ),
+                  borderRadius: BorderRadius.circular(20),
+                ),
+                child: Center(
+                  child: Text(
+                    'حضور غیاب',
+                    style: TextStyle(
+                      fontFamily: 'Vazir',
+                      color: state.selectedSection == 2
+                          ? Colors.white
+                          : ColorManager.purple,
+                    ),
+                  ),
+                ),
+              ),
             ),
-          ),
-        ),
-      ],
+            const SizedBox(
+              width: 30,
+            ),
+            GestureDetector(
+              onTap: () {
+                context.read<TeacherBloc>().add(TeacherSelectionEvent(3));
+              },
+              child: Container(
+                width: 100,
+                height: 40,
+                decoration: BoxDecoration(
+                  color: state.selectedSection == 3
+                      ? ColorManager.purple
+                      : Colors.white,
+                  border: Border.all(
+                    width: 2,
+                    color: state.selectedSection == 3
+                        ? Colors.white
+                        : ColorManager.purple,
+                  ),
+                  borderRadius: BorderRadius.circular(20),
+                ),
+                child: Center(
+                  child: Text(
+                    'نمره دهی',
+                    style: TextStyle(
+                      fontFamily: 'Vazir',
+                      color: state.selectedSection == 3
+                          ? Colors.white
+                          : ColorManager.purple,
+                    ),
+                  ),
+                ),
+              ),
+            ),
+          ],
+        );
+      },
     );
   }
 
-  Column Info() {
+  Column info() {
     return Column(
       children: [
         const SizedBox(
@@ -416,7 +492,7 @@ class TeacherScreen extends StatelessWidget {
           height: 140,
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(20),
-            color: Colors.green,
+            color: Colors.white,
           ),
           child: ClipRRect(
             borderRadius: BorderRadius.circular(20),
@@ -424,61 +500,78 @@ class TeacherScreen extends StatelessWidget {
               children: [
                 Expanded(
                   flex: 8,
-                  child: Container(
-                    color: Colors.yellow,
-                    child: Padding(
-                      padding: const EdgeInsets.only(right: 10),
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.end,
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.end,
-                            children: [
-                              Text('student.fullName'),
-                              const Icon(Icons.abc)
-                            ],
-                          ),
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.end,
-                            children: [
-                              Text('student.phoneNumber'),
-                              const Icon(Icons.abc)
-                            ],
-                          ),
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.end,
-                            children: [
-                              Text('student.id.toString()'),
-                              const Icon(Icons.abc)
-                            ],
-                          ),
-                          SizedBox(
-                            height: 10,
-                          ),
-                          Container(
-                            width: 70,
-                            height: 20,
-                            color: Colors.red,
-                            child: Center(
-                              child: Text('ویرایش'),
+                  child: Padding(
+                    padding: const EdgeInsets.only(right: 10),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.end,
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.end,
+                          children: [
+                            const Text(
+                              'علیرضا نیکروان',
+                              style: TextStyle(fontFamily: 'Vazir'),
                             ),
-                          )
-                        ],
-                      ),
+                            Icon(
+                              Icons.account_circle_rounded,
+                              color: ColorManager.purple,
+                            )
+                          ],
+                        ),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.end,
+                          children: [
+                            const Text(
+                              '0930XXXXXXX',
+                              style: TextStyle(fontFamily: 'Mvazir'),
+                            ),
+                            Icon(
+                              Icons.phone_enabled,
+                              color: ColorManager.purple,
+                            )
+                          ],
+                        ),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.end,
+                          children: [
+                            const Text(
+                              '2',
+                              style: TextStyle(fontFamily: 'Mvazir'),
+                            ),
+                            Icon(Icons.insert_emoticon_outlined,
+                                color: ColorManager.purple)
+                          ],
+                        ),
+                        const SizedBox(
+                          height: 10,
+                        ),
+                        Container(
+                          width: 70,
+                          height: 30,
+                          decoration: BoxDecoration(
+                              color: ColorManager.purple,
+                              borderRadius: BorderRadius.circular(5)),
+                          child: const Center(
+                            child: Text(
+                              'ویرایش',
+                              style: TextStyle(
+                                  fontFamily: 'Vazir', color: Colors.white),
+                            ),
+                          ),
+                        ),
+                      ],
                     ),
                   ),
                 ),
                 Expanded(
                   flex: 4,
                   child: Container(
-                    color: Colors.black,
-                    child: Container(
-                      width: 80,
-                      height: 80,
-                      decoration: BoxDecoration(
-                          color: Colors.white, shape: BoxShape.circle),
-                    ),
+                    width: 80,
+                    height: 80,
+                    decoration: const BoxDecoration(
+                        color: Colors.white, shape: BoxShape.circle),
+                    child: const Image(image: AssetImage('images/noImage.png')),
                   ),
                 ),
               ],
@@ -494,24 +587,28 @@ class CourseCard extends StatelessWidget {
   CourseCard({
     required this.course,
     required this.onTabMethod,
+    required this.selectionState,
     super.key,
   });
 
   Course course;
-  VoidCallback? onTabMethod;
+  VoidCallback onTabMethod;
+  int selectionState;
 
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: EdgeInsets.only(top: 20),
+      padding: const EdgeInsets.only(top: 20),
       child: Container(
         width: 310,
         height: 120,
         decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(20),
-            boxShadow: [
-              BoxShadow(blurRadius: 10, spreadRadius: 1, color: Colors.black)
-            ]),
+          borderRadius: BorderRadius.circular(20),
+          color: Colors.white,
+          boxShadow: const [
+            BoxShadow(blurRadius: 6, spreadRadius: 1, color: Colors.black)
+          ],
+        ),
         child: ClipRRect(
           borderRadius: BorderRadius.circular(20),
           child: Column(
@@ -519,56 +616,121 @@ class CourseCard extends StatelessWidget {
               Expanded(
                 flex: 9,
                 child: Container(
-                  color: Colors.yellow,
+                  color: Colors.white,
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.end,
                     children: [
-                      Padding(
-                          padding: EdgeInsets.symmetric(horizontal: 20),
-                          child: Column(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              Text(course.title),
-                              SizedBox(
-                                height: 5,
+                      selectionState != 1
+                          ? Container()
+                          : Padding(
+                              padding:
+                                  const EdgeInsets.symmetric(horizontal: 15),
+                              child: Column(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                crossAxisAlignment: CrossAxisAlignment.center,
+                                children: [
+                                  const Text(
+                                    'محل تشکیل کلاس',
+                                    style: TextStyle(
+                                      fontFamily: 'Vazir',
+                                    ),
+                                  ),
+                                  const SizedBox(
+                                    height: 10,
+                                  ),
+                                  Text(
+                                    '${course.holdPlace}',
+                                    style: const TextStyle(
+                                        fontFamily: 'Vazir',
+                                        fontWeight: FontWeight.bold),
+                                  )
+                                ],
                               ),
-                              Text(course.holdTime)
-                            ],
-                          )),
-                      Container(
+                            ),
+                      Padding(
+                        padding: selectionState == 2 || selectionState == 3
+                            ? const EdgeInsets.only(right: 30, top: 20)
+                            : const EdgeInsets.only(right: 40, top: 10),
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Text(
+                              course.title,
+                              style: TextStyle(
+                                  fontSize:
+                                      selectionState == 2 || selectionState == 3
+                                          ? 17
+                                          : 20,
+                                  fontFamily: 'Vazir',
+                                  fontWeight: FontWeight.bold),
+                            ),
+                            const SizedBox(
+                              height: 5,
+                            ),
+                            Text(
+                              course.holdTime,
+                              style: const TextStyle(
+                                fontSize: 16,
+                                fontFamily: 'Mvazir',
+                              ),
+                            )
+                          ],
+                        ),
+                      ),
+                      const SizedBox(
                         width: 100,
                         height: 100,
-                        color: Colors.black,
+                        child: Center(
+                          child: Image(
+                            image: AssetImage('images/2.png'),
+                            fit: BoxFit.cover,
+                          ),
+                        ),
                       ),
                     ],
                   ),
                 ),
               ),
-              Expanded(
-                flex: 3,
-                child: Container(
-                    color: Colors.green,
-                    child: Row(
-                      children: [
-                        SizedBox(
-                          width: 10,
-                        ),
-                        Padding(
-                            padding: EdgeInsets.all(5),
-                            child: GestureDetector(
-                              onTap: onTabMethod,
-                              child: Container(
-                                width: 90,
-                                height: 40,
-                                decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.circular(10),
-                                  color: Colors.black,
+              selectionState == 1
+                  ? Container()
+                  : Expanded(
+                      flex: 3,
+                      child: Center(
+                        child: Container(
+                          margin: const EdgeInsets.only(bottom: 1),
+                          color: Colors.white,
+                          child: Row(
+                            children: [
+                              const SizedBox(
+                                width: 10,
+                              ),
+                              Padding(
+                                padding: const EdgeInsets.all(5),
+                                child: GestureDetector(
+                                  onTap: onTabMethod,
+                                  child: Container(
+                                    width: 90,
+                                    height: 60,
+                                    decoration: BoxDecoration(
+                                      borderRadius: BorderRadius.circular(10),
+                                      color: ColorManager.purple,
+                                    ),
+                                    child: const Center(
+                                      child: Text(
+                                        'مشاهده',
+                                        style: TextStyle(
+                                            color: Colors.white,
+                                            fontFamily: 'Vazir'),
+                                      ),
+                                    ),
+                                  ),
                                 ),
                               ),
-                            ))
-                      ],
-                    )),
-              ),
+                            ],
+                          ),
+                        ),
+                      ),
+                    ),
             ],
           ),
         ),

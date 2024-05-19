@@ -39,11 +39,7 @@ class HomeScreen extends StatelessWidget {
                       builder: (context) => BlocProvider(
                         create: (context) => StudentBloc(),
                         child: BlocProvider(
-                          create: (context) {
-                            final bloc = locator.get<StudentBloc>();
-                            bloc.add(FetchAllCourses());
-                            return bloc;
-                          },
+                          create: (context) => locator.get<StudentBloc>(),
                           child: StudentScreen(
                             student: Student(
                                 fullName: 'عرفان پزشک پور',

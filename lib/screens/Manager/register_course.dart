@@ -8,17 +8,18 @@ class RegisterCourse extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Container(
-          width: 100,
+        title: const SizedBox(
+          width: 200,
           height: 50,
-          child: const Image(
-            image: AssetImage('images/Startlogo.png'),
-            fit: BoxFit.contain,
+          child: Image(
+            image: AssetImage('images/2.png'),
+            fit: BoxFit.cover,
           ),
         ),
         backgroundColor: ColorManager.purple,
         toolbarHeight: 50,
         centerTitle: true,
+        foregroundColor: Colors.white,
       ),
       body: Column(
         mainAxisAlignment: MainAxisAlignment.center,
@@ -26,6 +27,16 @@ class RegisterCourse extends StatelessWidget {
         children: [
           const SizedBox(
             width: double.infinity,
+          ),
+          const Padding(
+            padding: EdgeInsets.only(bottom: 60),
+            child: Text(
+              'ثبت دوره',
+              style: TextStyle(
+                  fontFamily: 'Vazir',
+                  fontSize: 20,
+                  fontWeight: FontWeight.bold),
+            ),
           ),
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 20),
@@ -99,22 +110,45 @@ class RegisterCourse extends StatelessWidget {
               ),
             ),
           ),
-          SizedBox(
+          const SizedBox(
             height: 70,
           ),
           Container(
             width: 300,
             height: 60,
-            color: Colors.red,
+            decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(15),
+                color: ColorManager.purple),
+            child: const Center(
+              child: Text(
+                'ثبت',
+                style: TextStyle(
+                    fontFamily: 'Vazir', color: Colors.white, fontSize: 25),
+              ),
+            ),
           ),
-          SizedBox(
+          const SizedBox(
             height: 20,
           ),
-          Container(
-            width: 300,
-            height: 60,
-            color: Colors.red,
-          )
+          GestureDetector(
+            onTap: () {
+              Navigator.of(context).pop();
+            },
+            child: Container(
+              width: 300,
+              height: 60,
+              decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(15),
+                  color: ColorManager.purple),
+              child: const Center(
+                child: Text(
+                  'بازگشت',
+                  style: TextStyle(
+                      fontFamily: 'Vazir', color: Colors.white, fontSize: 25),
+                ),
+              ),
+            ),
+          ),
         ],
       ),
     );

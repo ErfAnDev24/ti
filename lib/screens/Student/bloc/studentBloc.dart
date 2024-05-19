@@ -25,10 +25,8 @@ class StudentBloc extends Bloc<StudentEvent, StudentState> {
     on<FetchCourseDetails>((event, emit) {
       emit(StudentLoadingState());
 
-      print('ErfAn check 3');
       Teacher teacher = data.getTeacherObject(event.teacherId!);
 
-      print('ErfAn check ${teacher.fullName}');
       List<Course> courseList = data
           .getAllCourseByTeacherId(event.teacherId!)
           .where((element) => element.title == event.courseName)
@@ -52,9 +50,6 @@ class StudentBloc extends Bloc<StudentEvent, StudentState> {
 
     on<SelectTimeEvent>(
       (event, emit) async {
-        print('ErfAn check time ${state.runtimeType}');
-        print('ErfAn check time ${event.holdTime}');
-
         emit(
           SelectTimeState(state.teahcer, state.courseHoldDays,
               state.courseHoldDates, state.holdDay, event.holdTime),

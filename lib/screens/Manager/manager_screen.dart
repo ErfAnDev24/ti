@@ -21,17 +21,18 @@ class ManagerScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Container(
-          width: 100,
+        title: const SizedBox(
+          width: 200,
           height: 50,
-          child: const Image(
-            image: AssetImage('images/Startlogo.png'),
-            fit: BoxFit.contain,
+          child: Image(
+            image: AssetImage('images/2.png'),
+            fit: BoxFit.cover,
           ),
         ),
         backgroundColor: ColorManager.purple,
         toolbarHeight: 50,
         centerTitle: true,
+        foregroundColor: Colors.white,
       ),
       body: Stack(
         alignment: Alignment.bottomCenter,
@@ -39,8 +40,8 @@ class ManagerScreen extends StatelessWidget {
           Container(
             width: MediaQuery.of(context).size.width,
             height: MediaQuery.of(context).size.height,
-            color: Colors.red,
-            child: Info(),
+            color: ColorManager.purple,
+            child: info(),
           ),
           Container(
             width: MediaQuery.of(context).size.width,
@@ -52,52 +53,75 @@ class ManagerScreen extends StatelessWidget {
             ),
             child: Column(
               children: [
-                SizedBox(
+                const SizedBox(
                   height: 40,
                 ),
-                Container(
+                SizedBox(
                   width: MediaQuery.of(context).size.width * 0.9,
-                  height: MediaQuery.of(context).size.height * 0.5,
-                  color: Colors.red,
+                  height: MediaQuery.of(context).size.height * 0.6,
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      SizedBox(
+                      const SizedBox(
                         height: 20,
                       ),
                       GestureDetector(
                         onTap: () {
                           Navigator.of(context).push(
                             MaterialPageRoute(
-                              builder: (context) => RegisterCourse(),
+                              builder: (context) => const RegisterCourse(),
                             ),
                           );
                         },
                         child: Container(
                           width: 300,
                           height: 100,
-                          color: Colors.white,
+                          decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(20),
+                              color: ColorManager.purple),
+                          child: const Center(
+                            child: Text(
+                              'ثبت دوره',
+                              style: TextStyle(
+                                  color: Colors.white,
+                                  fontFamily: 'Vazir',
+                                  fontSize: 30,
+                                  fontWeight: FontWeight.bold),
+                            ),
+                          ),
                         ),
                       ),
-                      SizedBox(
-                        height: 20,
+                      const SizedBox(
+                        height: 40,
                       ),
                       GestureDetector(
                         onTap: () {
                           Navigator.of(context).push(
                             MaterialPageRoute(
-                              builder: (context) => RegisterStudent(),
+                              builder: (context) => const RegisterStudent(),
                             ),
                           );
                         },
                         child: Container(
                           width: 300,
                           height: 100,
-                          color: Colors.green,
+                          decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(20),
+                              color: ColorManager.purple),
+                          child: const Center(
+                            child: Text(
+                              'ثبت نام دانش آموز',
+                              style: TextStyle(
+                                  color: Colors.white,
+                                  fontFamily: 'Vazir',
+                                  fontSize: 30,
+                                  fontWeight: FontWeight.bold),
+                            ),
+                          ),
                         ),
                       ),
-                      SizedBox(
-                        height: 20,
+                      const SizedBox(
+                        height: 40,
                       ),
                       GestureDetector(
                         onTap: () {
@@ -110,11 +134,23 @@ class ManagerScreen extends StatelessWidget {
                         child: Container(
                           width: 300,
                           height: 100,
-                          color: Colors.amber,
+                          decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(20),
+                              color: ColorManager.purple),
+                          child: const Center(
+                            child: Text(
+                              'مدیریت پرداخت',
+                              style: TextStyle(
+                                  color: Colors.white,
+                                  fontFamily: 'Vazir',
+                                  fontSize: 30,
+                                  fontWeight: FontWeight.bold),
+                            ),
+                          ),
                         ),
                       ),
-                      SizedBox(
-                        height: 20,
+                      const SizedBox(
+                        height: 40,
                       )
                     ],
                   ),
@@ -127,7 +163,7 @@ class ManagerScreen extends StatelessWidget {
     );
   }
 
-  Column Info() {
+  Column info() {
     return Column(
       children: [
         const SizedBox(
@@ -138,7 +174,7 @@ class ManagerScreen extends StatelessWidget {
           height: 140,
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(20),
-            color: Colors.green,
+            color: Colors.white,
           ),
           child: ClipRRect(
             borderRadius: BorderRadius.circular(20),
@@ -146,61 +182,78 @@ class ManagerScreen extends StatelessWidget {
               children: [
                 Expanded(
                   flex: 8,
-                  child: Container(
-                    color: Colors.yellow,
-                    child: Padding(
-                      padding: const EdgeInsets.only(right: 10),
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.end,
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.end,
-                            children: [
-                              Text('student.fullName'),
-                              const Icon(Icons.abc)
-                            ],
-                          ),
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.end,
-                            children: [
-                              Text('student.phoneNumber'),
-                              const Icon(Icons.abc)
-                            ],
-                          ),
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.end,
-                            children: [
-                              Text('student.id.toString()'),
-                              const Icon(Icons.abc)
-                            ],
-                          ),
-                          SizedBox(
-                            height: 10,
-                          ),
-                          Container(
-                            width: 70,
-                            height: 20,
-                            color: Colors.red,
-                            child: Center(
-                              child: Text('ویرایش'),
+                  child: Padding(
+                    padding: const EdgeInsets.only(right: 10),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.end,
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.end,
+                          children: [
+                            const Text(
+                              'علیرضا نیکروان',
+                              style: TextStyle(fontFamily: 'Vazir'),
                             ),
-                          )
-                        ],
-                      ),
+                            Icon(
+                              Icons.account_circle_rounded,
+                              color: ColorManager.purple,
+                            )
+                          ],
+                        ),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.end,
+                          children: [
+                            const Text(
+                              '0930XXXXXXX',
+                              style: TextStyle(fontFamily: 'Mvazir'),
+                            ),
+                            Icon(
+                              Icons.phone_enabled,
+                              color: ColorManager.purple,
+                            )
+                          ],
+                        ),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.end,
+                          children: [
+                            const Text(
+                              '2',
+                              style: TextStyle(fontFamily: 'Mvazir'),
+                            ),
+                            Icon(Icons.insert_emoticon_outlined,
+                                color: ColorManager.purple)
+                          ],
+                        ),
+                        const SizedBox(
+                          height: 10,
+                        ),
+                        Container(
+                          width: 70,
+                          height: 30,
+                          decoration: BoxDecoration(
+                              color: ColorManager.purple,
+                              borderRadius: BorderRadius.circular(5)),
+                          child: const Center(
+                            child: Text(
+                              'ویرایش',
+                              style: TextStyle(
+                                  fontFamily: 'Vazir', color: Colors.white),
+                            ),
+                          ),
+                        ),
+                      ],
                     ),
                   ),
                 ),
                 Expanded(
                   flex: 4,
                   child: Container(
-                    color: Colors.black,
-                    child: Container(
-                      width: 80,
-                      height: 80,
-                      decoration: BoxDecoration(
-                          color: Colors.white, shape: BoxShape.circle),
-                    ),
+                    width: 80,
+                    height: 80,
+                    decoration: const BoxDecoration(
+                        color: Colors.white, shape: BoxShape.circle),
+                    child: const Image(image: AssetImage('images/noImage.png')),
                   ),
                 ),
               ],
