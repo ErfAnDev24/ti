@@ -346,9 +346,8 @@ class CourseCard extends StatelessWidget {
                             onTap: () {
                               Navigator.of(context).push(
                                 MaterialPageRoute(
-                                  builder: (context) => BlocProvider(
-                                    create: (context) =>
-                                        locator.get<StudentBloc>(),
+                                  builder: (pageContext) => BlocProvider.value(
+                                    value: context.read<StudentBloc>(),
                                     child: CourseDetails(course: course),
                                   ),
                                 ),

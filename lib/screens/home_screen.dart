@@ -38,16 +38,13 @@ class HomeScreen extends StatelessWidget {
                     MaterialPageRoute(
                       builder: (context) => BlocProvider(
                         create: (context) => StudentBloc(),
-                        child: BlocProvider(
-                          create: (context) => locator.get<StudentBloc>(),
-                          child: StudentScreen(
-                            student: Student(
-                                fullName: 'عرفان پزشک پور',
-                                password: '1234',
-                                studentCourse: [1, 2, 4],
-                                phoneNumber: '09300000009',
-                                id: 1),
-                          ),
+                        child: StudentScreen(
+                          student: Student(
+                              fullName: 'عرفان پزشک پور',
+                              password: '1234',
+                              studentCourse: [1, 2, 4],
+                              phoneNumber: '09300000009',
+                              id: 1),
                         ),
                       ),
                     ),
